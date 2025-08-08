@@ -1,0 +1,14 @@
+.git/
+.gitignore
+**/.gitkeep
+
+Dockerfile
+.dockeringore
+compose.yaml
+
+**/__pycache__/
+**/*.py[cod]
+
+.venv/
+
+.env.example

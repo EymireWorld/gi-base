@@ -1,0 +1,29 @@
+[project]
+name = "gi-base"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "alembic>=1.16.4",
+    "asyncpg>=0.30.0",
+    "fastapi>=0.116.1",
+    "gunicorn>=23.0.0",
+    "orjson>=3.11.0",
+    "redis>=6.2.0",
+    "sqlalchemy[asyncio]>=2.0.41",
+    "uvicorn-worker>=0.3.0",
+    "uvicorn[standard]>=0.35.0",
+]
+
+
+[tool.ruff]
+line-length = 100
+lint.select = ["I", "F", "E", "W", "N", "A", "B", "UP", "SIM"]
+lint.ignore = ["B008", "B904"]
+
+
+[tool.ruff.lint.isort]
+lines-after-imports = 2
+
+
+[tool.ruff.format]
+quote-style = "single"
