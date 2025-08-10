@@ -1,7 +1,7 @@
 import abc
 import hashlib
 import pickle
-from collections.abc import Callable
+from collections.abc import Awaitable, Callable
 from contextlib import suppress
 from functools import wraps
 from inspect import iscoroutinefunction
@@ -67,10 +67,10 @@ class CacheStorage:
         namespace: str = '',
         ignore_kwargs: list[str] | None = None,
     ):
-        def wrapper(func):
+        def wrapper(func: Callable[..., Any | Awaitable[Any]]):
             @wraps(func)
-            async def inner(*args, **kwargs):
-                async def run_func(*args, **kwargs):
+            async def inner(*args: tuple[Any], **kwargs: dict[str, Any]):
+                async def run_func(*args: tuple[Any], **kwargs: dict[str, Any]):
                     if iscoroutinefunction(func):
                         return await func(*args, **kwargs)
                     else:
