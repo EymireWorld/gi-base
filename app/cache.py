@@ -69,8 +69,8 @@ class CacheStorage:
     ):
         def wrapper(func: Callable[..., Any | Awaitable[Any]]):
             @wraps(func)
-            async def inner(*args: tuple[Any], **kwargs: dict[str, Any]):
-                async def run_func(*args: tuple[Any], **kwargs: dict[str, Any]):
+            async def inner(*args: tuple[Any, ...], **kwargs: dict[str, Any]):
+                async def run_func(*args: tuple[Any, ...], **kwargs: dict[str, Any]):
                     if iscoroutinefunction(func):
                         return await func(*args, **kwargs)
                     else:
