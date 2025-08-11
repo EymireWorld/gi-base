@@ -1,13 +1,33 @@
 from dotenv import dotenv_values
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 env = dotenv_values()
 
 
-DB_HOST: str = env.get('DB_HOST')  # type: ignore
-DB_NAME: str = env.get('DB_NAME')  # type: ignore
-DB_USER: str = env.get('DB_USER')  # type: ignore
-DB_PASSWORD: str = env.get('DB_PASSWORD')  # type: ignore
+class DatabaseSettings(BaseSettings):
+    model_config = SettingsConfigDict(
+        env_file='.env',
+        env_file_encoding='utf-8',
+        extra='ignore',
+    )
 
-REDIS_HOST: str = env.get('REDIS_HOST')  # type: ignore
-REDIS_PORT: int = int(env.get('REDIS_PORT'))  # type: ignore
+    DB_HOST: str
+    DB_NAME: str
+    DB_USER: str
+    DB_PASSWORD: str
+
+
+class RedisSettings(BaseSettings):
+    model_config = SettingsConfigDict(
+        env_file='.env',
+        env_file_encoding='utf-8',
+        extra='ignore',
+    )
+
+    REDIS_HOST: str
+    REDIS_PORT: int
+
+
+database_settings = DatabaseSettings()
+redis_settings = RedisSettings()

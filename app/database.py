@@ -1,9 +1,11 @@
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 
-from app.settings import DB_HOST, DB_NAME, DB_PASSWORD, DB_USER
+from app.settings import database_settings
 
 
-engine = create_async_engine(f'postgresql+asyncpg://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}')
+engine = create_async_engine(
+    f'postgresql+asyncpg://{database_settings.DB_USER}:{database_settings.DB_PASSWORD}@{database_settings.DB_HOST}/{database_settings.DB_NAME}'
+)
 session_factory = async_sessionmaker(
     engine,
     autoflush=False,

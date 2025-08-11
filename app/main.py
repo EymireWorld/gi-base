@@ -7,7 +7,7 @@ from redis import asyncio as aioredis
 
 from app.cache import CacheStorage
 from app.cache.backends import RedisBackend
-from app.settings import REDIS_HOST, REDIS_PORT
+from app.settings import redis_settings
 
 from .api.router import router as api_router
 
@@ -15,8 +15,8 @@ from .api.router import router as api_router
 @asynccontextmanager
 async def lifespan(_: FastAPI):
     redis = aioredis.Redis(
-        host=REDIS_HOST,
-        port=REDIS_PORT,
+        host=redis_settings.REDIS_HOST,
+        port=redis_settings.REDIS_PORT,
     )
     CacheStorage.init(RedisBackend(redis))
     yield
