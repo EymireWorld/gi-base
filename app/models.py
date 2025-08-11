@@ -1,6 +1,9 @@
 from sqlalchemy.orm import Mapped, declarative_base, mapped_column
 
-from app.enums import WeaponSubStatType, WeaponType
+from app.enums import Weapon, WeaponSubStat
+
+
+__all__ = ['WeaponModel']
 
 
 Base = declarative_base()
@@ -12,7 +15,7 @@ class WeaponModel(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
 
     name: Mapped[str]
-    type: Mapped[WeaponType]
+    type: Mapped[Weapon]
     rarity: Mapped[int]
 
     icon_url: Mapped[str]
@@ -20,7 +23,7 @@ class WeaponModel(Base):
     base_attack_min: Mapped[int]
     base_attack_max: Mapped[int]
 
-    substat_type: Mapped[WeaponSubStatType]
+    substat_name: Mapped[WeaponSubStat]
     substat_value_min: Mapped[float]
     substat_value_max: Mapped[float]
 

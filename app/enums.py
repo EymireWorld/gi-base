@@ -1,6 +1,9 @@
 from enum import Enum
 
 
+__all__ = ['Element', 'Weapon', 'WeaponSubStat']
+
+
 class Element(str, Enum):
     PYRO = 'pyro'
     HYDRO = 'hydro'
@@ -11,7 +14,7 @@ class Element(str, Enum):
     GEO = 'geo'
 
 
-class WeaponType(str, Enum):
+class Weapon(str, Enum):
     SWORD = 'sword'
     CLAYMORE = 'claymore'
     CATALYST = 'catalyst'
@@ -19,7 +22,7 @@ class WeaponType(str, Enum):
     BOW = 'bow'
 
 
-class WeaponSubStatType(str, Enum):
+class WeaponSubStat(str, Enum):
     ATK = 'atk'
     DEF = 'def'
     HP = 'hp'
