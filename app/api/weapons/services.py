@@ -2,7 +2,7 @@ from fastapi import HTTPException, status
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.enums import WeaponSubStatType
+from app.enums import WeaponSubStat
 from app.models import WeaponModel
 
 
@@ -11,15 +11,15 @@ async def get_weapons(
     offset: int,
     limit: int,
     rarity: int | None,
-    substat_type: WeaponSubStatType | None,
+    substat_name: WeaponSubStat | None,
 ) -> list[WeaponModel]:
     stmt = select(WeaponModel).order_by(WeaponModel.id.asc()).offset(offset).limit(limit)
 
     if rarity:
         stmt = stmt.where(WeaponModel.rarity == rarity)
 
-    if substat_type:
-        stmt = stmt.where(WeaponModel.substat_type == substat_type)
+    if substat_name:
+        stmt = stmt.where(WeaponModel.substat_name == substat_name)
 
     result = await session.execute(stmt)
     result = result.scalars().all()
