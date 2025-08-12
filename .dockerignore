@@ -6,9 +6,13 @@ Dockerfile
 .dockeringore
 compose.yaml
 
+migrations/versions/*
+
 **/__pycache__/
 **/*.py[cod]
 
 .venv/
 
 .env.example
+
+README.md

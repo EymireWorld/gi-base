@@ -7,7 +7,7 @@ from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import async_engine_from_config
 
 from app.models import Base
-from app.settings import database_settings
+from app.settings import db_settings
 
 
 config = context.config
@@ -15,10 +15,10 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-config.set_main_option('DB_HOST', database_settings.DB_HOST)
-config.set_main_option('DB_NAME', database_settings.DB_NAME)
-config.set_main_option('DB_USER', database_settings.DB_USER)
-config.set_main_option('DB_PASSWORD', database_settings.DB_PASSWORD)
+config.set_main_option('DB_HOST', db_settings.DB_HOST)
+config.set_main_option('DB_NAME', db_settings.DB_NAME)
+config.set_main_option('DB_USER', db_settings.DB_USER)
+config.set_main_option('DB_PASSWORD', db_settings.DB_PASSWORD)
 
 target_metadata = Base.metadata
 

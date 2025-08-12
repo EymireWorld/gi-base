@@ -31,7 +31,7 @@ async def run_func(
 
 
 def cache(
-    expire: int = 3600,
+    expire: int = 1800,
     ignore_kwargs: list[str] | None = None,
 ):
     def wrapper(func: Callable[..., Any | Awaitable[Any]]):

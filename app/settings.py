@@ -29,5 +29,5 @@ class RedisSettings(BaseSettings):
     REDIS_PORT: int
 
 
-database_settings = DatabaseSettings()
+db_settings = DatabaseSettings()
 redis_settings = RedisSettings()

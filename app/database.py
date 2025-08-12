@@ -1,10 +1,12 @@
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 
-from app.settings import database_settings
+from app.settings import db_settings
 
 
 engine = create_async_engine(
-    f'postgresql+asyncpg://{database_settings.DB_USER}:{database_settings.DB_PASSWORD}@{database_settings.DB_HOST}/{database_settings.DB_NAME}'
+    f'postgresql+asyncpg://{db_settings.DB_USER}:{db_settings.DB_PASSWORD}@{db_settings.DB_HOST}/{db_settings.DB_NAME}',
+    pool_size=10,
+    max_overflow=15,
 )
 session_factory = async_sessionmaker(
     engine,
