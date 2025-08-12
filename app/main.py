@@ -19,7 +19,10 @@ async def lifespan(_: FastAPI):
         port=redis_settings.REDIS_PORT,
     )
     CacheStorage.init(RedisBackend(redis))
+
     yield
+
+    await redis.close()
 
 
 def create_app() -> FastAPI:

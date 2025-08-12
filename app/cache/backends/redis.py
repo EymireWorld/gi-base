@@ -1,5 +1,3 @@
-from contextlib import suppress
-
 from redis import asyncio as aioredis
 from redis.exceptions import RedisError
 
@@ -11,13 +9,22 @@ class RedisBackend(Backend):
         self.client = client
 
     async def get(self, key: str) -> bytes | None:
-        with suppress(RedisError):
-            return await self.client.get(key)
+        try:
+            result = await self.client.get(key)
+        except RedisError:
+            return None
+        return result
 
-    async def set(self, key: str, value: bytes, expire: int) -> None:
-        with suppress(RedisError):
+    async def set(self, key: str, value: bytes, expire: int) -> bool:
+        try:
             await self.client.set(key, value, ex=expire)
+        except RedisError:
+            return False
+        return True
 
-    async def clear(self, key: str) -> None:
-        with suppress(RedisError):
+    async def clear(self, key: str) -> bool:
+        try:
             await self.client.delete(key)
+        except RedisError:
+            return False
+        return True

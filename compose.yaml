@@ -4,9 +4,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: [ "uv", "run", "gunicorn", "app.main:create_app()", "-b", "0.0.0.0:8080", "-k", "uvicorn_worker.UvicornWorker", "-w", "${WORKERS_QUANTITY}" ]
+    command: [ "uv", "run", "gunicorn", "app.main:create_app()", "-b", "0.0.0.0:8080", "-k", "uvicorn_worker.UvicornWorker", "-w", "${API_WORKERS_QUANTITY}" ]
     ports:
-      - 8080:8000
+      - ${API_PORT}:8080
     volumes:
       - migrations-data:/app/migrations/versions
     depends_on:
