@@ -1,8 +1,8 @@
-from dotenv import dotenv_values
+from dotenv import load_dotenv
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
-env = dotenv_values()
+load_dotenv()
 
 
 class DatabaseSettings(BaseSettings):

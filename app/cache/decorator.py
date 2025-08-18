@@ -34,7 +34,7 @@ def cache(
     expire: int = 1800,
     ignore_kwargs: list[str] | None = None,
 ):
-    def wrapper(func: Callable[..., Any | Awaitable[Any]]):
+    def decorator(func: Callable[..., Any | Awaitable[Any]]):
         signature = Signature.from_callable(func)
         is_request_param_injected = False
         request_param = find_dependency(signature, Request)
@@ -69,7 +69,7 @@ def cache(
             )
 
         @wraps(func)
-        async def inner(*args: tuple[Any, ...], **kwargs: dict[str, Any]):
+        async def wrapper(*args: tuple[Any, ...], **kwargs: dict[str, Any]):
             kwargs_copy = kwargs.copy()
 
             request: Request = kwargs_copy.pop(request_param.name)  # type: ignore
@@ -108,8 +108,8 @@ def cache(
 
             return result
 
-        inner.__signature__ = signature  # type: ignore
+        wrapper.__signature__ = signature  # type: ignore
 
-        return inner
+        return wrapper
 
-    return wrapper
+    return decorator
