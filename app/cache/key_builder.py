@@ -5,9 +5,6 @@ from typing import Any
 from fastapi import Request, Response
 
 
-__all__ = ['default_key_builder']
-
-
 def default_key_builder(
     func: Callable[..., Any | Awaitable[Any]],
     prefix: str,

@@ -2,9 +2,6 @@ from app.cache.key_builder import default_key_builder
 from app.cache.types import Backend, KeyBuilder
 
 
-__all__ = ['CacheStorage']
-
-
 class CacheStorage:
     _init: bool = False
     _backend: Backend | None = None

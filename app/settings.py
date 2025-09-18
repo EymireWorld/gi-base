@@ -1,33 +1,16 @@
+import os
+
 from dotenv import load_dotenv
-from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 load_dotenv()
 
 
-class DatabaseSettings(BaseSettings):
-    model_config = SettingsConfigDict(
-        env_file='.env',
-        env_file_encoding='utf-8',
-        extra='ignore',
-    )
-
-    DB_HOST: str
-    DB_NAME: str
-    DB_USER: str
-    DB_PASSWORD: str
+DB_HOST = os.environ['DB_HOST']
+DB_NAME = os.environ['DB_NAME']
+DB_USER = os.environ['DB_USER']
+DB_PASSWORD = os.environ['DB_PASSWORD']
 
 
-class RedisSettings(BaseSettings):
-    model_config = SettingsConfigDict(
-        env_file='.env',
-        env_file_encoding='utf-8',
-        extra='ignore',
-    )
-
-    REDIS_HOST: str
-    REDIS_PORT: int
-
-
-db_settings = DatabaseSettings()
-redis_settings = RedisSettings()
+REDIS_HOST = os.environ['REDIS_HOST']
+REDIS_PORT = int(os.environ['REDIS_PORT'])

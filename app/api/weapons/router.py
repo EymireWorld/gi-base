@@ -42,4 +42,4 @@ async def get_weapon(
         weapon_id,
     )
 
-    return weapon
+    return weapon  # type: ignore

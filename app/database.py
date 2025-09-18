@@ -1,10 +1,10 @@
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 
-from app.settings import db_settings
+from app.settings import DB_HOST, DB_NAME, DB_PASSWORD, DB_USER
 
 
 engine = create_async_engine(
-    f'postgresql+asyncpg://{db_settings.DB_USER}:{db_settings.DB_PASSWORD}@{db_settings.DB_HOST}/{db_settings.DB_NAME}',
+    f'postgresql+asyncpg://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}',
     pool_size=10,
     max_overflow=15,
 )

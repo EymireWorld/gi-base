@@ -10,9 +10,6 @@ from fastapi.concurrency import run_in_threadpool
 from . import CacheStorage
 
 
-__all__ = ['cache']
-
-
 def find_dependency(signature: Signature, annotation: Any) -> Parameter | None:
     for param in signature.parameters.values():
         if param.annotation == annotation:

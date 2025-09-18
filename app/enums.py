@@ -1,7 +1,20 @@
 from enum import Enum
 
 
-__all__ = ['Element', 'Weapon', 'WeaponSubStat']
+class Server(str, Enum):
+    AMERICA = 'america'
+    EUROPE = 'europe'
+    ASIA = 'asia'
+
+
+class Day(str, Enum):
+    MONDAY = 'monday'
+    TUESDAY = 'tuesday'
+    WEDNESDAY = 'wednesday'
+    THURSDAY = 'thursday'
+    FRIDAY = 'friday'
+    SATURDAY = 'saturday'
+    SUNDAY = 'sunday'
 
 
 class Element(str, Enum):

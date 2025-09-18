@@ -5,9 +5,6 @@ from typing import Any
 from fastapi import Request, Response
 
 
-__all__ = ['Backend', 'KeyBuilder']
-
-
 class Backend(abc.ABC):
     @abc.abstractmethod
     async def get(self, key: str) -> bytes | None: ...
