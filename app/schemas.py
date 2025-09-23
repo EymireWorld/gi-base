@@ -9,32 +9,45 @@ class Schema(BaseModel):
     id: int
 
 
-class CommonUpgradeMaterialSchema(Schema):
-    name_rarity_one: str
-    name_rarity_two: str
-    name_rarity_three: str
+class CommonUpgradeMaterialModel(Schema):
+    group_name: str
+
+    one_name: str
+    one_url: str
+    two_name: str
+    two_url: str
+    three_name: str
+    three_url: str
 
 
-class SecondaryWeaponUpgradeMaterialSchema(Schema):
-    name_rarity_one: str
-    name_rarity_two: str
-    name_rarity_three: str
+class SecondaryWeaponUpgradeMaterialModel(Schema):
+    group_name: str
+
+    one_name: str
+    one_url: str
+    two_name: str
+    two_url: str
+    three_name: str
+    three_url: str
 
 
-class PrimaryWeaponUpgradeMaterialSchema(Schema):
-    name_rarity_one: str
-    name_rarity_two: str
-    name_rarity_three: str
-    name_rarity_four: str
+class PrimaryWeaponUpgradeMaterialModel(Schema):
+    one_name: str
+    one_url: str
+    two_name: str
+    two_url: str
+    three_name: str
+    three_url: str
+    four_name: str
+    four_url: str
+
     farm_days: list[Day]
 
 
-class WeaponSchema(Schema):
+class WeaponModel(Schema):
     name: str
     type: Weapon
     rarity: Literal[3, 4, 5]
-
-    icon_url: str
 
     base_attack_min: int
     base_attack_max: int
@@ -42,6 +55,8 @@ class WeaponSchema(Schema):
     substat_name: WeaponSubStat
     substat_value_min: float
     substat_value_max: float
+
+    icon_url: str
 
     passive_name: str
     passive_description_min: str

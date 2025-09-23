@@ -5,8 +5,3 @@ __pycache__/
 
 migrations/versions/*
 !migrations/versions/.gitkeep
-
-static/weapons/*
-!static/weapons/.gitkeep
-static/characters/*
-!static/characters/.gitkeep

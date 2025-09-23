@@ -19,22 +19,36 @@ class Base(DeclarativeBase):
 
 
 class CommonUpgradeMaterialModel(Base):
-    name_rarity_one: Mapped[str]
-    name_rarity_two: Mapped[str]
-    name_rarity_three: Mapped[str]
+    group_name: Mapped[str]
+
+    one_name: Mapped[str]
+    one_url: Mapped[str]
+    two_name: Mapped[str]
+    two_url: Mapped[str]
+    three_name: Mapped[str]
+    three_url: Mapped[str]
 
 
 class SecondaryWeaponUpgradeMaterialModel(Base):
-    name_rarity_one: Mapped[str]
-    name_rarity_two: Mapped[str]
-    name_rarity_three: Mapped[str]
+    group_name: Mapped[str]
+
+    one_name: Mapped[str]
+    one_url: Mapped[str]
+    two_name: Mapped[str]
+    two_url: Mapped[str]
+    three_name: Mapped[str]
+    three_url: Mapped[str]
 
 
 class PrimaryWeaponUpgradeMaterialModel(Base):
-    name_rarity_one: Mapped[str]
-    name_rarity_two: Mapped[str]
-    name_rarity_three: Mapped[str]
-    name_rarity_four: Mapped[str]
+    one_name: Mapped[str]
+    one_url: Mapped[str]
+    two_name: Mapped[str]
+    two_url: Mapped[str]
+    three_name: Mapped[str]
+    three_url: Mapped[str]
+    four_name: Mapped[str]
+    four_url: Mapped[str]
 
     farm_days: Mapped[list[Day]] = mapped_column(ARRAY(Enum(Day)))
 
@@ -58,11 +72,11 @@ class WeaponModel(Base):
     passive_description_max: Mapped[str | None] = mapped_column(default=None)
 
     common_upgrade_material_id: Mapped[int] = mapped_column(
-        ForeignKey('common-upgrade-materials.id'),
+        ForeignKey('common-upgrade-materials.id')
     )
     secondary_upgrade_material_id: Mapped[int] = mapped_column(
-        ForeignKey('secondary-weapon-upgrade-materials.id'),
+        ForeignKey('secondary-weapon-upgrade-materials.id')
     )
     primary_upgrade_material_id: Mapped[int] = mapped_column(
-        ForeignKey('primary-weapon-upgrade-materials.id'),
+        ForeignKey('primary-weapon-upgrade-materials.id')
     )
